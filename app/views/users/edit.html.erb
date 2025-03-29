@@ -1,0 +1,22 @@
+<h1>User info</h1>
+
+<%= form_with model: @user, url: user_path(@user.id), method: :patch do |form| %>
+  <div>
+    <%= form.label :name, "Name" %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+  <%= form.label :image, "Image" %><br>
+  <%= form.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %> 
+  </div>
+
+  <div>
+    <%= form.label :introduction, "Introduction" %><br>
+    <%= form.text_area :introduction %>   
+  </div>
+
+  <div>
+    <%= form.submit "Update User", data: { confirm: '上記の内容で投稿を更新します。よろしいですか？' }  %><br>
+  </div>
+<% end %>
