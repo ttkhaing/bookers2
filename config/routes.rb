@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get "homes/about" => "homes#about", as: "about"
   patch 'users/:id' => 'users#update', as: 'update_user'
-  
+  get 'books/:id' => 'books#show', as: 'book'
   resources :users
   resources :books
 
