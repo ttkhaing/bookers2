@@ -1,5 +1,13 @@
+<% if @book.errors.any? %>
+    <%= @book.errors.count %>error prohibited this obj from being saved:
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+<% end %>
 <h2>User info</h2>
-  <%= image_tag @user.get_profile_image(100,100) %>
+  <%= image_tag user.get_profile_image(100,100) %>
   <table class="table table-striped">
     <tbody>
       <tr>
@@ -25,6 +33,6 @@
   <p>Opinion</p>
     <%= f.text_area :body %>
 
-  <br><%= f.submit 'Create Book' %>
+  <br><%= f.submit 'Create Book', class: "btn btn-success" %>
   <% end %>
 
