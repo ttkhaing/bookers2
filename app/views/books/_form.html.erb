@@ -1,32 +1,35 @@
-<% if @book.errors.any? %>
-    <%= @book.errors.count %>error prohibited this obj from being saved:
+<% if book.errors.any? %>
+    <%= book.errors.count %>error prohibited this obj from being saved:
     <ul>
-      <% @book.errors.full_messages.each do |message| %>
+      <% book.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
 <% end %>
-<h2>User info</h2>
-  <%= image_tag user.get_profile_image(100,100) %>
-  <table class="table table-striped">
-    <tbody>
-      <tr>
-        <th>name</th>
-        <th><%= user.name %></th>
-      </tr>
-      <tr>
-        <th>introduction</th>
-        <th><%= user.introduction %></th>
-      </tr>
-    </tbody>
-  </table>
 
-  <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block" do%>
-    <i class="fa-solid fa-user-gear"></i>
-  <% end %>
+  <h2>User info</h2>
+    <%= image_tag user.get_profile_image(100,100) %>
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th>name</th>
+          <th><%= user.name %></th>
+        </tr>
+        <tr>
+          <th>introduction</th>
+          <th><%= user.introduction %></th>
+        </tr>
+      </tbody>
+    </table>
+
+    <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block" do%>
+      <i class="fa-solid fa-user-gear"></i>
+    <% end %>
+
+
 
   <h2>New book</h2>
-    <%= form_with model: @book, url: '/books', method: :post do |f| %>
+    <%= form_with model: book, url: '/books', method: :post do |f| %>
   <p>Title</p>
     <%= f.text_field :title %>
 

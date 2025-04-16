@@ -12,12 +12,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
   end
   
   def show
     @user = User.find(params[:id])
-    @books = current_user.books
+    @books = @user.books
     @book = Book.new
   end
 
@@ -31,11 +31,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
     if @user.update(user_params)
       flash[:notice] = "You have updated user successfully."
       redirect_to user_path(@user.id)
     else
+      flash[:alert] = "User update failed."
       render :new
     end
   end
@@ -46,10 +47,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
 
-  def def is_matching_login_user
+  def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
-      redirect_to post_images_path
+      redirect_to user_path(current_user.id)
     end
   end
 end
