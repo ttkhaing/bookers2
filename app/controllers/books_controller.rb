@@ -41,9 +41,9 @@ class BooksController < ApplicationController
   end
 
   def update
+    @book = Book.find(params[:id])
     if @book.update(book_params)
-      flash[:notice] = "Book has been Updated successfully."
-      redirect_to book_path
+      redirect_to book_path(@book.id),notice: "Book Updated successfully."
     else
       flash[:alert] = "Book update failed."
       render :edit
@@ -64,8 +64,9 @@ class BooksController < ApplicationController
   end
 
   def is_matching_login_user
-    user = User.find(params[:id])
-    unless user.id == current_user.id
+    @book = Book.find(params[:id])
+    @user = @book.user
+    unless @user.id == current_user.id
       redirect_to books_path
     end
   end

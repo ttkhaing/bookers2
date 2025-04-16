@@ -7,14 +7,14 @@
     <% end %>
   </ul>
 <% end %>
-  <%= form_with model: @book, url: '/books', method: :post do |f| %>
+  <%= form_with model: @book do |f| %>
     <p>Title</p>
       <%= f.text_field :title %>
 
     <p>Opinion</p>
       <%= f.text_area :body %>
 
-    <br><%= f.submit 'Update Book', class: "btn btn-success" %>
+    <br><%= f.submit "Update Book", class: "btn btn-success" %>
   <% end %>
   <%= link_to "Show", book_path(@book.id) %>
   |

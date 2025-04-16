@@ -37,7 +37,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user.id)
     else
       flash[:alert] = "User update failed."
-      render :new
+      render :edit
     end
   end
 
@@ -48,8 +48,8 @@ class UsersController < ApplicationController
   end
 
   def is_matching_login_user
-    user = User.find(params[:id])
-    unless user.id == current_user.id
+    @user = User.find(params[:id])
+    unless @user.id == current_user.id
       redirect_to user_path(current_user.id)
     end
   end
